@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-default-backend
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: nginxdb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginxdb
+    spec:
+      containers:
+      - name: nginxdb
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+            - name: nginx-public
+              mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: nginx-public
+        configMap:
+          name: nginx-index-db
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index-db
+  namespace: default
+data:
+  index.html: |
+    <html>
+    <h1>Welcome To Default Backend for Your Org.</h1>
+    </br>
+    <h1>Hi! You have reached the default backend for Gateway </h1>
+    </html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-default-backend
+  namespace: default
+  annotations:
+    cloud.google.com/backend-config: '{"default": "nginx-backendconfig-db"}'
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  selector:
+    app: nginxdb
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80

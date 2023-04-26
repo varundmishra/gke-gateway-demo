@@ -1,0 +1,21 @@
+---
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: route-external-store-de
+  namespace: store-de
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: external-http
+    namespace: default
+  hostnames:
+  - "store.example.com"
+  rules:
+  - matches:
+    - path:
+      #type: PathPrefix
+        value: /de
+    backendRefs:
+    - name: store-german
+      port: 8080

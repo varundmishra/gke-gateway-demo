@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: store-en
+  labels:
+    shared-gateway-access: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: store-de
+  labels:
+    shared-gateway-access: "true"

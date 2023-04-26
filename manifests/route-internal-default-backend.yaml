@@ -1,0 +1,14 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: route-internal-default-backend
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: internal-http
+  hostnames:
+  - "store.example.com"
+  rules:
+  - backendRefs:
+    - name: nginx-default-backend-internal
+      port: 80
