@@ -9,8 +9,6 @@ spec:
   - kind: Gateway
     name: external-http
     namespace: default
-  hostnames:
-  - "store.example.com"
   rules:
   - matches:
     - path:

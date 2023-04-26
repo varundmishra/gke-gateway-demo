@@ -10,5 +10,5 @@ spec:
   - "store.example.com"
   rules:
   - backendRefs:
-    - name: nginx-default-backend-internal
+    - name: nginx-default-backend
       port: 80

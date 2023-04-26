@@ -6,9 +6,7 @@ spec:
   parentRefs:
   - kind: Gateway
     name: external-http
-  hostnames:
-  - "store.example.com"
   rules:
   - backendRefs:
-    - name: nginx-default-backend-external
+    - name: nginx-default-backend
       port: 80
