@@ -22,6 +22,8 @@ kubectl get pod -n store-en
 kubectl get svc -n store-en
 kubectl get pod -n store-de
 kubectl get svc -n store-de
+kubectl get pod -n store-canary
+kubectl get svc -n store-canary
 
 #Apply internal HTTP route
 kubectl apply -f manifests/route-internal-default-backend.yaml

@@ -16,8 +16,6 @@ spec:
     - headers:
       - name: env
         value: canary
-    - path:
-        value: /canary
     backendRefs:
     - name: store-canary
       port: 8080
