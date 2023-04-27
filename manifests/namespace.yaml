@@ -12,3 +12,10 @@ metadata:
   name: store-de
   labels:
     shared-gateway-access: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: store-canary
+  labels:
+    shared-gateway-access: "true"

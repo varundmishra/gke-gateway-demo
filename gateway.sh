@@ -40,7 +40,8 @@ kubectl get gateways.gateway.networking.k8s.io internal-http -o=jsonpath="{.stat
 curl -vvv -H "host: store.example.com" http://INTERNAL_GATEWAY_IP
 curl -vvv -H "host: store.example.com" http://INTERNAL_GATEWAY_IP/en
 curl -vvv -H "host: store.example.com" http://INTERNAL_GATEWAY_IP/de
-#TBD - curl -vvv -H "host: store.example.com" -H "env: canary" $VIP
+#To test header based routing:
+curl -vvv -H "host: store.example.com" -H "env:canary" http://INTERNAL_GATEWAY_IP/canary
 
 #Deploy the external gateway
 kubectl apply -f manifests/gateway-external.yaml
@@ -54,6 +55,8 @@ kubectl apply -f manifests/route-external-store-en.yaml
 kubectl describe httproute route-external-store-en -n store-en
 kubectl apply -f manifests/route-external-store-de.yaml
 kubectl describe httproute route-external-store-de -n store-de
+kubectl apply -f manifests/route-external-store-canary.yaml
+kubectl describe httproute route-external-store-canary -n store-canary
 
 #Get the virtual ip address of the internal gateway by running the following command
 kubectl get gateways.gateway.networking.k8s.io external-http -o=jsonpath="{.status.addresses[0].value}"
@@ -61,3 +64,5 @@ kubectl get gateways.gateway.networking.k8s.io external-http -o=jsonpath="{.stat
 http://EXTERNAL_GATEWAY_IP
 http://EXTERNAL_GATEWAY_IP/en
 http://EXTERNAL_GATEWAY_IP/de
+#To test header based routing, fire up your Postman, add header with name=env and value=canary and hit the below url:
+http://EXTERNAL_GATEWAY_IP/canary

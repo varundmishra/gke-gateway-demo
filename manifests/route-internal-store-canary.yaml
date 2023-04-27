@@ -1,0 +1,23 @@
+---
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: route-internal-store-canary
+  namespace: store-canary
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: internal-http
+    namespace: default
+  hostnames:
+  - "store.example.com"
+  rules:
+  - matches:
+    - headers:
+      - name: env
+        value: canary
+    - path:
+        value: /canary
+    backendRefs:
+    - name: store-canary
+      port: 8080
