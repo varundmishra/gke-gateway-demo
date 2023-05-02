@@ -68,5 +68,5 @@ kubectl get gateways.gateway.networking.k8s.io external-http -o=jsonpath="{.stat
 http://EXTERNAL_GATEWAY_IP
 http://EXTERNAL_GATEWAY_IP/en
 http://EXTERNAL_GATEWAY_IP/de
-#To test header based routing, fire up your Postman, add header with name=env and value=canary and hit the below url:
-http://EXTERNAL_GATEWAY_IP/canary
+#To test header based routing, fire up your Postman/any API testing tool, add header with name=env and value=canary and hit the below url:
+http://EXTERNAL_GATEWAY_IP/
