@@ -32,6 +32,8 @@ kubectl apply -f manifests/route-internal-store-en.yaml
 kubectl describe httproute route-internal-store-en -n store-en
 kubectl apply -f manifests/route-internal-store-de.yaml
 kubectl describe httproute route-internal-store-de -n store-de
+kubectl apply -f manifests/route-internal-store-canary.yaml
+kubectl describe httproute route-internal-store-canary -n store-de
 
 #Create a compute instance in the same vpc, test by sending traffic to your application from a VM
 #Create instance
