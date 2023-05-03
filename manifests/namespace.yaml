@@ -2,20 +2,20 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: store-en
+  name: bookstore-en
   labels:
     shared-gateway-access: "true"
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: store-de
+  name: bookstore-de
   labels:
     shared-gateway-access: "true"
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: store-canary
+  name: bookstore-canary
   labels:
     shared-gateway-access: "true"

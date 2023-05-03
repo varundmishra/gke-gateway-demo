@@ -2,8 +2,8 @@
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
-  name: route-external-store-canary
-  namespace: store-canary
+  name: route-external-bookstore-canary
+  namespace: bookstore-canary
 spec:
   parentRefs:
   - kind: Gateway
@@ -15,5 +15,5 @@ spec:
       - name: env
         value: canary
     backendRefs:
-    - name: store-canary
+    - name: bookstore-canary
       port: 8080

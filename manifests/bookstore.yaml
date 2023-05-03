@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: store-english
-  namespace: store-en
+  name: bookstore-english
+  namespace: bookstore-en
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: store-en
+      app: bookstore-en
       version: english
   template:
     metadata:
       labels:
-        app: store-en
+        app: bookstore-en
         version: english
     spec:
       containers:
@@ -28,13 +28,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: store-english
-  namespace: store-en
+  name: bookstore-english
+  namespace: bookstore-en
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
-    app: store-en
+    app: bookstore-en
     version: english
   ports:
   - port: 8080
@@ -43,18 +43,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: store-german
-  namespace: store-de
+  name: bookstore-german
+  namespace: bookstore-de
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: store-de
+      app: bookstore-de
       version: german
   template:
     metadata:
       labels:
-        app: store-de
+        app: bookstore-de
         version: german
     spec:
       containers:
@@ -69,13 +69,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: store-german
-  namespace: store-de
+  name: bookstore-german
+  namespace: bookstore-de
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
-    app: store-de
+    app: bookstore-de
     version: german
   ports:
   - port: 8080
@@ -84,19 +84,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: store-canary
-  namespace: store-canary
+  name: bookstore-canary
+  namespace: bookstore-canary
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: store-canary
-      version: store-canary
+      app: bookstore-canary
+      version: bookstore-canary
   template:
     metadata:
       labels:
-        app: store-canary
-        version: store-canary
+        app: bookstore-canary
+        version: bookstore-canary
     spec:
       containers:
       - name: whereami
@@ -110,14 +110,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: store-canary
-  namespace: store-canary
+  name: bookstore-canary
+  namespace: bookstore-canary
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
-    app: store-canary
-    version: store-canary
+    app: bookstore-canary
+    version: bookstore-canary
   ports:
   - port: 8080
     targetPort: 8080

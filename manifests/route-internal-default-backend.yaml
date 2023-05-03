@@ -7,7 +7,7 @@ spec:
   - kind: Gateway
     name: internal-http
   hostnames:
-  - "store.example.com"
+  - "bookstore.example.com"
   rules:
   - backendRefs:
     - name: nginx-default-backend
